@@ -1,0 +1,53 @@
+# Curated set of OpenAQ countries to poll. The producer discovers actual
+# station IDs at runtime via GET /v3/locations (cached to
+# data/locations_cache.json) rather than hardcoding volatile location IDs.
+#
+# Rate-limit budget: OpenAQ's default API key allows 60 req/min. With
+# poll_interval_seconds=300 and max_locations<=150, a full poll cycle issues
+# <=150 GET /latest requests over 300s (~0.5 req/s), comfortably under the
+# limit even with the periodic discovery call added on top.
+poll_interval_seconds: 300
+max_locations: 150
+locations_per_page: 100
+discovery_refresh_hours: 24
+
+# Deliberately mixes historically high-pollution regions (more likely to
+# surface real "dangerous" AQI events for the demo) with low-pollution
+# baseline regions, across multiple continents.
+countries:
+  - iso: IE
+    label: Ireland
+    limit: 15
+  - iso: GB
+    label: United Kingdom
+    limit: 15
+  - iso: US
+    label: United States
+    limit: 20
+  - iso: IN
+    label: India
+    limit: 20
+  - iso: CN
+    label: China
+    limit: 15
+  - iso: PK
+    label: Pakistan
+    limit: 10
+  - iso: BD
+    label: Bangladesh
+    limit: 10
+  - iso: NG
+    label: Nigeria
+    limit: 10
+  - iso: BR
+    label: Brazil
+    limit: 10
+  - iso: AU
+    label: Australia
+    limit: 10
+  - iso: DE
+    label: Germany
+    limit: 10
+  - iso: ZA
+    label: South Africa
+    limit: 5
